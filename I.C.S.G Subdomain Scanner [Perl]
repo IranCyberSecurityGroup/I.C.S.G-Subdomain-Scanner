@@ -1,0 +1,92 @@
+#!/usr/bin/perl
+use LWP::UserAgent;
+no warnings 'uninitialized';
+$ua = LWP::UserAgent->new();
+$ua->agent("Mozilla/5.0 (Windows; U; Windows NT 5.1; fr; rv:1.9.1) Gecko/20090624 Firefox/3.5");
+#################################################################################
+#I.C.S.G Subdomain Scanner                                                      #
+#                                                                               #
+#Coded By WH!T3 W01F                                                            #
+#                                                                               #
+#Iran Cyber Security Group                                                      #
+#                                                                               #
+#Iran-Cyber.Org                                                                 #
+#                                                                               #
+#Spc Tnx: root3r | MOHAMAD-NOFOZI | KamraN HellisH | JOK3R | Pi.Hack            # 
+#                                                                               # 
+#Wordlist Link : http://www.mediafire.com/download/0s7bfg9ehi6nyfp/wordlist.txt #
+#################################################################################
+$site="$ARGV[0]";
+if ($site =~ /http:|https:|www/i) {
+print "\n!!! Don't Type Address With http:// or www. !!!\n\n";
+exit;
+}
+#############
+print q {
+ _____                          _____      _                   ____
+|_   _|                        / ____|    | |                 / __ \
+  | |  _ __ __ _ _ __  ______ | |    _   _| |__   ___ _ __   | |  | |_ __ __ _
+  | | | '__/ _` | '_ \|______|| |   | | | | '_ \ / _ \ '__|  | |  | | '__/ _` |
+  | |_| | | (_| | | | |       | |___| |_| | |_) |  __/ |  _  | |__| | | | (_| |
+|_____|_|  \__,_|_| |_|        \_____\__, |_.__/ \___|_| (_)  \____/|_|  \__, |
+                                      __/ |                                _/ |
+                                     |___/                               |___/
+
+};
+sleep(2);
+print "\n";
+print "\t   +=============================================================+\n";
+print "\t   |                  I.C.S.G Subdomain Finder                   |\n";
+print "\t   |                     Author: WH!T3 W01F                      |\n";
+print "\t   |                       Iran-Cyber.Org                        |\n";
+print "\t   | Spc Tnx: root3r|MOHAMAD-NOFOZI|KamraN HellisH|JOK3R|Pi.Hack |\n";
+print "\t   +=============================================================+\n";
+print "\n";
+#############
+if (length $site) {
+print "\nProcessing ...\n";
+open("subd","<wordlist.txt") or die "Can't Open Subdomains Wordlist";
+while(<subd>){
+chomp($_);
+$sub = $_;
+$url='http://'.$sub.'.'.$site;
+$req = $ua->get("$url");
+if ($req->is_success) {
+print "\n$url";
+open("save2",">>subdomains.txt") or die "Can't Write Results To subdomains.txt";
+print save2 "$url\n";
+close("save2");
+}
+}
+close("subd");
+}
+#############################################
+else {
+address:;
+print "Type Website Address ( Without http:// And www. ) : ";
+$address=<STDIN>;
+chomp ($address);
+############
+if ($address =~ /http:|https:|www/i) {
+print "\nDon't Type Address With http:// or www.\n\n";
+goto address;
+}
+############
+else {
+print "\nProcessing ...\n";
+open("subb","<wordlist.txt") or die "Can't Open Subdomains Wordlist";
+while(<subb>){
+chomp($_);
+$sub = $_;
+$url='http://'.$sub.'.'.$address;
+$req = $ua->get("$url");
+if ($req->is_success) {
+print "\n$url";
+open("save",">>subdomains.txt") or die "Can't Write Results To subdomains.txt";
+print save "$url\n";
+close("save");
+}
+}
+close("subb");
+}
+}
