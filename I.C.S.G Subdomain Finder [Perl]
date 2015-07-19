@@ -4,7 +4,7 @@ no warnings 'uninitialized';
 $ua = LWP::UserAgent->new();
 $ua->agent("Mozilla/5.0 (Windows; U; Windows NT 5.1; fr; rv:1.9.1) Gecko/20090624 Firefox/3.5");
 #################################################################################
-#I.C.S.G Subdomain Scanner                                                      #
+#I.C.S.G Subdomain Finder                                                       #
 #                                                                               #
 #Coded By WH!T3 W01F                                                            #
 #                                                                               #
